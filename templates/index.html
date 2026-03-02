@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Extractor - Professional Grade</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            color: white;
+            padding: 15px 0;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        /* Main Content - Split Layout */
+        .content {
+            display: flex;
+            gap: 20px;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* LEFT PANEL: Upload */
+        .upload-panel {
+            width: 35%;
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .upload-panel h2 {
+            font-size: 18px;
+            color: #1e3c72;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* File Input */
+        .file-input-wrapper {
+            position: relative;
+            flex: 1;
+        }
+
+        .file-input-wrapper input[type="file"] {
+            display: none;
+        }
+
+        .file-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #f5f7ff 0%, #eef2ff 100%);
+            border: 2px dashed #2a5298;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            height: 200px;
+        }
+
+        .file-label:hover {
+            background: linear-gradient(135deg, #eef2ff 0%, #e5ecff 100%);
+            border-color: #1e3c72;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(42, 82, 152, 0.15);
+        }
+
+        .file-label.drag-over {
+            background: linear-gradient(135deg, #dde5f5 0%, #d1e0f5 100%);
+            border-color: #1e3c72;
+            box-shadow: 0 6px 16px rgba(42, 82, 152, 0.2);
+        }
+
+        .file-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .file-text {
+            font-size: 15px;
+            color: #1e3c72;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .file-subtext {
+            font-size: 12px;
+            color: #666;
+            opacity: 0.7;
+        }
+
+        /* File List */
+        .file-list {
+            margin-top: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 180px;
+            overflow-y: auto;
+        }
+
+        .file-item {
+            padding: 12px;
+            background: #f5f7ff;
+            border-radius: 8px;
+            border-left: 3px solid #2a5298;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            font-size: 13px;
+        }
+
+        .file-item-info {
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .file-item-name {
+            color: #1e3c72;
+            font-weight: 500;
+            word-break: break-word;
+            white-space: pre-wrap;
+            overflow-wrap: break-word;
+        }
+
+        .file-item-size {
+            font-size: 11px;
+            color: #999;
+            margin-top: 4px;
+        }
+
+        .file-item-remove {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 6px 12px;
+            font-size: 11px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .file-item-remove:hover {
+            background: #ff5252;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 6px rgba(255, 107, 107, 0.3);
+        }
+
+        /* Buttons */
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        button {
+            flex: 1;
+            padding: 12px 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(42, 82, 152, 0.3);
+        }
+
+        .btn-primary:active:not(:disabled) {
+            transform: translateY(0);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: #e8e8e8;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #d8d8d8;
+            transform: translateY(-2px);
+        }
+
+        /* RIGHT PANEL: Results */
+        .results-panel {
+            width: 65%;
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .results-header {
+            font-size: 18px;
+            color: #1e3c72;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .results-content {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .results-empty {
+            text-align: center;
+            color: #999;
+            padding: 80px 40px;
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        /* Loading Indicator */
+        .spinner {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #2a5298;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Job Status Item */
+        .job-status {
+            padding: 14px;
+            background: #f5f7ff;
+            border-radius: 8px;
+            border-left: 3px solid #2a5298;
+        }
+
+        .job-status-name {
+            font-weight: 500;
+            color: #1e3c72;
+            margin-bottom: 6px;
+            font-size: 13px;
+        }
+
+        .job-status-info {
+            font-size: 12px;
+            color: #666;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 3px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-badge.pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-badge.processing {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .status-badge.completed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-badge.failed {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        /* Result Section */
+        .result-section {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 14px;
+            border-left: 3px solid #2a5298;
+        }
+
+        .result-filename {
+            font-weight: 600;
+            color: #1e3c72;
+            margin-bottom: 10px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .result-title {
+            font-weight: 500;
+            color: #1e3c72;
+            margin: 12px 0 8px 0;
+            font-size: 12px;
+            text-transform: uppercase;
+            opacity: 0.7;
+        }
+
+        .result-text {
+            background: white;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            line-height: 1.6;
+            color: #333;
+            max-height: 150px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            border: 1px solid #e0e0e0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .result-table-wrapper {
+            background: white;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .table-info {
+            padding: 8px 12px;
+            background: #f5f7ff;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 11px;
+            color: #1e3c72;
+            font-weight: 600;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+        }
+
+        th {
+            background: #f5f7ff;
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            font-weight: 600;
+            color: #1e3c72;
+        }
+
+        td {
+            padding: 6px 8px;
+            border-bottom: 1px solid #f0f0f0;
+            color: #333;
+        }
+
+        tr:hover {
+            background: #fafafa;
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .content {
+                flex-direction: column;
+            }
+
+            .upload-panel,
+            .results-panel {
+                width: 100%;
+                min-height: 50%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+                gap: 10px;
+            }
+
+            .header h1 {
+                font-size: 20px;
+            }
+
+            .upload-panel,
+            .results-panel {
+                padding: 15px;
+            }
+
+            .file-label {
+                height: 150px;
+                padding: 20px 15px;
+            }
+
+            .file-icon {
+                font-size: 36px;
+            }
+
+            table {
+                font-size: 10px;
+            }
+
+            th, td {
+                padding: 4px 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>📄 PDF Extractor</h1>
+            <p>Extract text dan tables dari PDF - Support multiple files (1-5)</p>
+        </div>
+
+        <!-- Split Layout: Upload + Results -->
+        <div class="content">
+            <!-- LEFT: Upload Panel -->
+            <div class="upload-panel">
+                <h2>📤 Upload PDF Files</h2>
+                
+                <form id="uploadForm">
+                    <div class="form-group">
+                        <div class="file-input-wrapper">
+                            <label for="fileInput" class="file-label" id="fileLabel">
+                                <span class="file-icon">📁</span>
+                                <span class="file-text">Click atau drag PDF ke sini</span>
+                                <span class="file-subtext">Max 5 files, 50MB per file</span>
+                            </label>
+                            <input type="file" id="fileInput" accept=".pdf" multiple>
+                        </div>
+
+                        <!-- File List -->
+                        <div id="fileList" class="file-list"></div>
+                    </div>
+                </form>
+
+                <!-- Buttons -->
+                <div class="button-group">
+                    <button type="submit" form="uploadForm" class="btn-primary" id="uploadBtn">
+                        Upload & Extract
+                    </button>
+                    <button type="button" class="btn-secondary" id="clearBtn">
+                        Clear
+                    </button>
+                </div>
+            </div>
+
+            <!-- RIGHT: Results Panel -->
+            <div class="results-panel">
+                <div class="results-header">📊 Hasil Ekstraksi</div>
+                <div id="results" class="results-content">
+                    <div class="results-empty">Upload PDF untuk melihat hasil ekstraksi</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const fileLabel = document.getElementById('fileLabel');
+        const fileInput = document.getElementById('fileInput');
+        const fileList = document.getElementById('fileList');
+        const uploadBtn = document.getElementById('uploadBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const uploadForm = document.getElementById('uploadForm');
+        const resultsDiv = document.getElementById('results');
+
+        // File Drag & Drop
+        fileLabel.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            fileLabel.classList.add('drag-over');
+        });
+
+        fileLabel.addEventListener('dragleave', () => {
+            fileLabel.classList.remove('drag-over');
+        });
+
+        fileLabel.addEventListener('drop', (e) => {
+            e.preventDefault();
+            fileLabel.classList.remove('drag-over');
+            fileInput.files = e.dataTransfer.files;
+            updateFileList();
+        });
+
+        fileInput.addEventListener('change', updateFileList);
+
+        // Update file list display
+        function updateFileList() {
+            fileList.innerHTML = '';
+            const files = fileInput.files;
+
+            if (files.length === 0) {
+                uploadBtn.disabled = true;
+                return;
+            }
+
+            uploadBtn.disabled = false;
+
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const sizeMB = (file.size / 1024 / 1024).toFixed(2);
+
+                const fileItem = document.createElement('div');
+                fileItem.className = 'file-item';
+                fileItem.innerHTML = `
+                    <div class="file-item-info">
+                        <div class="file-item-name">${file.name}</div>
+                        <div class="file-item-size">${sizeMB} MB</div>
+                    </div>
+                    <button type="button" class="file-item-remove" onclick="removeFile(${i})">Remove</button>
+                `;
+                fileList.appendChild(fileItem);
+            }
+        }
+
+        // Remove individual file
+        function removeFile(index) {
+            const dt = new DataTransfer();
+            for (let i = 0; i < fileInput.files.length; i++) {
+                if (i !== index) {
+                    dt.items.add(fileInput.files[i]);
+                }
+            }
+            fileInput.files = dt.files;
+            updateFileList();
+        }
+
+        // Clear all
+        clearBtn.addEventListener('click', () => {
+            fileInput.value = '';
+            fileList.innerHTML = '';
+            uploadBtn.disabled = true;
+            resultsDiv.innerHTML = '<div class="results-empty">Upload PDF untuk melihat hasil ekstraksi</div>';
+        });
+
+        // Upload form submission
+        uploadForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const files = fileInput.files;
+            if (files.length === 0) {
+                alert('Pilih file terlebih dahulu');
+                return;
+            }
+
+            showLoading('Uploading files...');
+            uploadBtn.disabled = true;
+
+            try {
+                const formData = new FormData();
+
+                // Append semua files dengan field name "files" (CRITICAL!)
+                for (let i = 0; i < files.length; i++) {
+                    formData.append('files', files[i]);
+                }
+
+                const res = await fetch('/api/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await res.json();
+
+                if (!data.success || !data.jobs || data.jobs.length === 0) {
+                    throw new Error(data.error || 'Upload failed');
+                }
+
+                // Start polling untuk semua jobs
+                pollAllJobs(data.jobs);
+
+            } catch (error) {
+                showError('Error: ' + error.message);
+                uploadBtn.disabled = false;
+            }
+        });
+
+        function showLoading(message) {
+            resultsDiv.innerHTML = `
+                <div style="text-align: center; padding: 60px 40px; color: #666;">
+                    <div class="spinner"></div>
+                    <div style="margin-top: 16px; font-size: 14px;">${message}</div>
+                </div>
+            `;
+        }
+
+        function showError(message) {
+            resultsDiv.innerHTML = `
+                <div style="color: #721c24; padding: 16px; background: #f8d7da; border-radius: 6px; border-left: 3px solid #721c24;">
+                    ${message}
+                </div>
+            `;
+        }
+
+        // Poll all jobs
+        function pollAllJobs(jobs) {
+            let processingCount = jobs.length;
+
+            const statusMap = {};
+            jobs.forEach(job => {
+                statusMap[job.job_id] = {
+                    filename: job.file_name,
+                    status: 'PENDING'
+                };
+            });
+
+            const pollInterval = setInterval(async () => {
+                for (const job of jobs) {
+                    try {
+                        const res = await fetch(`/api/results/${job.job_id}/status`);
+                        const data = await res.json();
+
+                        if (data.success) {
+                            if (statusMap[job.job_id].status !== data.status) {
+                                statusMap[job.job_id].status = data.status;
+
+                                if (data.status === 'COMPLETED' || data.status === 'FAILED') {
+                                    processingCount--;
+                                }
+                            }
+                        }
+                    } catch (err) {
+                        console.error('Status poll error:', err);
+                    }
+                }
+
+                displayJobStatus(statusMap);
+
+                if (processingCount <= 0) {
+                    clearInterval(pollInterval);
+                    getResults(jobs);
+                }
+            }, 800);
+        }
+
+        function displayJobStatus(statusMap) {
+            let html = '<div>';
+            Object.values(statusMap).forEach(item => {
+                const badgeClass = item.status.toLowerCase();
+                html += `
+                    <div class="job-status">
+                        <div class="job-status-name">📄 ${item.filename}</div>
+                        <div class="job-status-info">
+                            Status: <span class="status-badge ${badgeClass}">${item.status}</span>
+                        </div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            resultsDiv.innerHTML = html;
+        }
+
+        async function getResults(jobs) {
+            let html = '<div>';
+
+            for (const job of jobs) {
+                try {
+                    const res = await fetch(`/api/results/${job.job_id}`);
+                    const data = await res.json();
+
+                    if (data.success && data.items && data.items.length > 0) {
+                        html += buildResultsHTML(job.file_name, data.items);
+                    } else {
+                        html += `
+                            <div class="result-section">
+                                <div class="result-filename">⚠️ ${job.file_name}</div>
+                                <p style="color: #999; font-size: 12px;">No data extracted</p>
+                            </div>
+                        `;
+                    }
+                } catch (error) {
+                    console.error('Fetch results error:', error);
+                    html += `
+                        <div class="result-section">
+                            <div class="result-filename">❌ ${job.file_name}</div>
+                            <p style="color: #c62828; font-size: 12px;">Error loading results</p>
+                        </div>
+                    `;
+                }
+            }
+
+            html += '</div>';
+            resultsDiv.innerHTML = html;
+            uploadBtn.disabled = false;
+        }
+
+        function buildResultsHTML(filename, items) {
+            let html = `
+                <div class="result-section">
+                    <div class="result-filename">📄 ${filename}</div>
+            `;
+
+            items.forEach((item, idx) => {
+                if (item.type === 'text') {
+                    const textContent = typeof item.content === 'string' ? item.content : JSON.stringify(item.content);
+                    html += `
+                        <div class="result-title">📝 Text Content</div>
+                        <div class="result-text">${escapeHtml(textContent)}</div>
+                    `;
+                } else if (item.type === 'table') {
+                    html += buildTableHTML(item);
+                }
+            });
+
+            html += '</div>';
+            return html;
+        }
+
+        function buildTableHTML(item) {
+            if (!item.headers || !item.rows) {
+                return `<div style="color: #999; padding: 8px; font-size: 12px;">Invalid table format</div>`;
+            }
+
+            let html = `
+                <div class="result-title">📊 Table (${item.rows.length} rows)</div>
+                <div class="result-table-wrapper">
+                    <div class="table-info">Total rows: <strong>${item.rows.length}</strong></div>
+                    <table>
+                        <thead>
+                            <tr>
+            `;
+
+            item.headers.forEach(header => {
+                html += `<th>${escapeHtml(String(header))}</th>`;
+            });
+
+            html += `
+                            </tr>
+                        </thead>
+                        <tbody>
+            `;
+
+            item.rows.forEach(row => {
+                html += '<tr>';
+                for (let i = 0; i < item.headers.length; i++) {
+                    const cell = row && row[i] ? String(row[i]) : '';
+                    html += `<td>${escapeHtml(cell)}</td>`;
+                }
+                html += '</tr>';
+            });
+
+            html += `
+                        </tbody>
+                    </table>
+                </div>
+            `;
+
+            return html;
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return String(text).replace(/[&<>"']/g, m => map[m]);
+        }
+    </script>
+</body>
+</html>

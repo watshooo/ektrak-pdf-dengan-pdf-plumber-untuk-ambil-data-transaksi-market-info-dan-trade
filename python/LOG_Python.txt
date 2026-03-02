@@ -1,0 +1,435 @@
+LOG Python
+(pdt) D:\cod\testDat\webtest2\pdfEkstrak>cd python
+
+(pdt) D:\cod\testDat\webtest2\pdfEkstrak\python>python extract.py ReportAuditTrade.pdf
+[EXTRACT] DEBUG: Processing 2 pages from ReportAuditTrade.pdf
+[EXTRACT] DEBUG: Text extracted: 4350 characters
+[EXTRACT] DEBUG: Page 1: 13 native tables found
+[EXTRACT] DEBUG: Page 1, Table 1: 11 headers, 1 native rows
+[EXTRACT] DEBUG:   Using native table data (1 rows)
+[EXTRACT] DEBUG: Page 1, Table 2: Invalid headers, skipping
+[EXTRACT] DEBUG: Page 1, Table 3: Invalid headers, skipping
+[EXTRACT] DEBUG: Page 1, Table 4: Invalid headers, skipping
+[EXTRACT] DEBUG: Page 1, Table 5: Invalid headers, skipping
+[EXTRACT] DEBUG: Page 1, Table 6: Invalid headers, skipping
+[EXTRACT] DEBUG: Page 1, Table 7: Invalid headers, skipping
+[EXTRACT] DEBUG: Page 1, Table 8: Invalid headers, skipping
+[EXTRACT] DEBUG: Page 1, Table 9: Invalid headers, skipping
+[EXTRACT] DEBUG: Page 1, Table 10: Invalid headers, skipping
+[EXTRACT] DEBUG: Page 1, Table 11: Invalid headers, skipping
+[EXTRACT] DEBUG: Page 1, Table 12: Invalid headers, skipping
+[EXTRACT] DEBUG: Page 1, Table 13: Invalid headers, skipping
+[EXTRACT] DEBUG: Page 2: 13 native tables found
+[EXTRACT] DEBUG: Page 2, Table 1: 11 headers, 0 native rows
+[EXTRACT] DEBUG:   Native table punya 0 rows, fallback ke text mining...
+[EXTRACT] DEBUG: Text mining extracted 24 rows dari text
+[EXTRACT] DEBUG: Page 2, Table 2: Invalid headers, skipping
+[EXTRACT] DEBUG: Page 2, Table 3: Invalid headers, skipping
+[EXTRACT] DEBUG: Page 2, Table 4: Invalid headers, skipping
+[EXTRACT] DEBUG: Page 2, Table 5: Invalid headers, skipping
+[EXTRACT] DEBUG: Page 2, Table 6: Invalid headers, skipping
+[EXTRACT] DEBUG: Page 2, Table 7: Invalid headers, skipping
+[EXTRACT] DEBUG: Page 2, Table 8: Invalid headers, skipping
+[EXTRACT] DEBUG: Page 2, Table 9: Invalid headers, skipping
+[EXTRACT] DEBUG: Page 2, Table 10: Invalid headers, skipping
+[EXTRACT] DEBUG: Page 2, Table 11: Invalid headers, skipping
+[EXTRACT] DEBUG: Page 2, Table 12: Invalid headers, skipping
+[EXTRACT] DEBUG: Page 2, Table 13: Invalid headers, skipping
+[EXTRACT] DEBUG: Processing table 1: 11 headers, 25 rows (method: native_table)
+[EXTRACT] DEBUG: [Page 1, Table 1] Processing: 11 headers, 25 rows
+[EXTRACT] DEBUG:   → Normalized columns: ['Datetrade', 'Trade Id', 'Contract', 'Acc', 'Buy Sell', 'Trade Vol', 'Price', 'Close Vol', 'Close Settle', 'Fee Trade', 'Overnight']
+[EXTRACT] DEBUG:   ✓ Success: 25→25 rows, 11→11 cols
+{
+  "success": true,
+  "error": "",
+  "data": [
+    {
+      "type": "text",
+      "content": "Report Audit Trade\nDateTrade Trade ID Contract Acc Buy Trade Price Close Close Fee Overnight\nSell Vol Vol Settle Trade\n2025-08-16 25081600001 CPOID- IBPD100101 S 3 16260.00 3 C 2500.00 0.00\n22:32:30 AUG25\n2025-08-16 25081600002 CPOID- anis-4001 B 3 16260.00 3 C 2500.00 0.00\n22:32:30 AUG25\n2025-08-16 25081600003 CPOID- IBAS100101 S 2 16260.00 2 C 2500.00 0.00\n22:32:30 AUG25\n2025-08-16 25081600004 CPOID- IBPI100101 B 2 16260.00 2 C 2500.00 0.00\n22:32:30 AUG25\n2025-08-16 25081600005 CPOID- IBGK00401 B 4 16260.00 4 C 2500.00 0.00\n22:32:30 AUG25\n2025-08-16 25081600006 CPOID- seto1010 S 1 16260.00 1 C 2500.00 0.00\n22:32:30 AUG25\n2025-08-16 25081600007 CPOID- IBBB100301 B 1 16260.00 1 C 5000.00 0.00\n22:32:30 AUG25\n2025-08-16 25081600008 CPOID- IBBM100401 S 1 16260.00 1 C 5000.00 0.00\n22:32:30 AUG25\n2025-08-16 25081600009 CPOID- IBBM100501 B 1 16260.00 1 C 5000.00 0.00\n22:32:30 AUG25\n2025-08-16 25081600010 CPOID- IBBM100401 S 1 16260.00 1 C 5000.00 0.00\n22:32:30 AUG25\n2025-08-16 25081600011 CPOID- IBBM100401 S 2 16260.00 2 C 5000.00 0.00\n22:32:30 AUG25\n2025-08-16 25081600012 CPOID- IBBB100301 B 2 16260.00 2 C 5000.00 0.00\n22:32:30 AUG25\n2025-08-16 25081600013 CPOID- IBBB100301 B 1 16260.00 1 C 5000.00 0.00\n22:32:30 AUG25\n2025-08-16 25081600014 CPOID- IBBB100401 S 1 16260.00 1 C 5000.00 0.00\n22:32:30 AUG25\n2025-08-16 25081600015 CPOID- IBSA02601 S 2 16260.00 2 C 2500.00 0.00\n22:32:30 AUG25\n2025-08-16 25081600016 CPOID- seto1010 S 3 16260.00 3 C 5000.00 0.00\n22:32:30 AUG25\n2025-08-16 25081600017 CPOID- IBBM100101 B 2 16260.00 2 C 5000.00 0.00\n22:32:30 AUG25\n2025-08-16 25081600018 CPOID- IB22100101 S 1 16260.00 1 C 5000.00 0.00\n22:32:30 AUG25\n2025-08-16 25081600019 CPOID- IB00500201 B 1 16260.00 1 C 5000.00 0.00\n22:32:30 AUG25\n2025-08-20 25082000001 CPOID- DAVN1001 B 4 16400.00 4 5000.00 0.00\n13:59:08 SEP25\n2025-08-20 25082000001 CPOID- Trd-001 S 4 16400.00 4 5000.00 0.00\n13:59:08 SEP25\n2025-08-20 25082000002 CPOID- Trd-001 B 4 16400.00 4 5000.00 0.00\n14:25:49 SEP25\n2025-08-20 25082000002 CPOID- DAVN1001 S 4 16400.00 4 5000.00 0.00\n14:25:49 SEP25\n2025-08-20 25082000003 CPOID- DAVN1002 B 2 16450.00 2 5000.00 0.00\n14:27:23 SEP25\n2025-08-20 25082000003 CPOID- Trd-001 S 2 16450.00 2 5000.00 0.00\n14:27:23 SEP25\n2025-08-20 25082000004 CPOID- IB69100101 B 2 16450.00 2 5000.00 0.00\nDateTrade Trade ID Contract Acc Buy Trade Price Close Close Fee Overnight\nSell Vol Vol Settle Trade\n14:43:00 SEP25\n2025-08-20 25082000004 CPOID- IP69100101 S 2 16450.00 2 5000.00 0.00\n14:43:00 SEP25\n2025-08-20 25082000005 CPOID- IB69100101 B 2 16450.00 2 5000.00 0.00\n14:43:27 SEP25\n2025-08-20 25082000005 CPOID- IP69100101 S 2 16450.00 2 5000.00 0.00\n14:43:27 SEP25\n2025-08-20 25082000006 CPOID- IB00500201 B 2 16460.00 2 5000.00 0.00\n14:56:34 SEP25\n2025-08-20 25082000006 CPOID- IB00500101 S 2 16460.00 2 5000.00 0.00\n14:56:34 SEP25\n2025-08-20 25082000007 CPOID- IB00500201 B 2 16460.00 2 5000.00 0.00\n14:56:44 SEP25\n2025-08-20 25082000007 CPOID- IB00500101 S 2 16460.00 2 5000.00 0.00\n14:56:44 SEP25\n2025-08-20 25082000008 CPOID- IB00500101 B 2 16300.00 2 5000.00 0.00\n15:01:49 OCT25\n2025-08-20 25082000008 CPOID- IB00500201 S 2 16300.00 2 5000.00 0.00\n15:01:49 OCT25\n2025-08-20 25082000009 CPOID- IB00500101 B 2 16300.00 2 5000.00 0.00\n15:01:58 OCT25\n2025-08-20 25082000009 CPOID- IB00500201 S 2 16300.00 2 5000.00 0.00\n15:01:58 OCT25\n2025-08-20 25082000010 CPOID- IB11100101 B 2 16500.00 2 5000.00 0.00\n15:16:20 SEP25\n2025-08-20 25082000010 CPOID- IB11100201 S 2 16500.00 2 5000.00 0.00\n15:16:20 SEP25\n2025-08-20 25082000011 CPOID- IB11100101 B 2 16500.00 2 5000.00 0.00\n15:16:29 SEP25\n2025-08-20 25082000011 CPOID- IB11100201 S 2 16500.00 2 5000.00 0.00\n15:16:29 SEP25\n2025-08-28 25082800001 CPOID- IB11100201 B 2 16500.00 2 5000.00 0.00\n15:09:04 SEP25\n2025-08-28 25082800001 CPOID- IB11100101 S 2 16500.00 2 5000.00 0.00\n15:09:04 SEP25\n2025-08-28 25082800002 CPOID- IB11200101 B 2 16500.00 2 5000.00 0.00\n15:13:24 SEP25\n2025-08-28 25082800002 CPOID- IB11100101 S 2 16500.00 2 5000.00 0.00\n15:13:24 SEP25\n2025-08-29 25082900001 CPOID- IB11100101 B 2 16500.00 2 5000.00 0.00\n14:37:03 SEP25\n2025-08-29 25082900001 CPOID- IB11200101 S 2 16500.00 2 5000.00 0.00\n14:37:03 SEP25\n2025-08-29 25082900002 CPOID- IB11100201 B 2 16490.00 2 5000.00 0.00\n14:38:29 SEP25\n2025-08-29 25082900002 CPOID- IB11100101 S 2 16490.00 2 5000.00 0.00\n14:38:29 SEP25",
+      "confidence": 1.0,
+      "metadata": {
+        "extraction_method": "pdfplumber_text",
+        "char_count": 4350
+      }
+    },
+    {
+      "type": "table",
+      "content": {
+        "headers": [
+          "Datetrade",
+          "Trade Id",
+          "Contract",
+          "Acc",
+          "Buy Sell",
+          "Trade Vol",
+          "Price",
+          "Close Vol",
+          "Close Settle",
+          "Fee Trade",
+          "Overnight"
+        ],
+        "rows": [
+          [
+            "2025-08-16",
+            "25081600001",
+            "CPOID-\nAUG25",
+            "IBPD100101",
+            "S",
+            3.0,
+            16260.0,
+            3.0,
+            "C",
+            "2500.00",
+            "0.00"
+          ],
+          [
+            null,
+            "Vol",
+            "Vol",
+            "Settle",
+            "Trade",
+            null,
+            null,
+            null,
+            "",
+            "",
+            ""
+          ],
+          [
+            null,
+            "25082000004",
+            "CPOID-",
+            "IP69100101",
+            "S",
+            2.0,
+            16450.0,
+            2.0,
+            "5000.00",
+            "0.00",
+            ""
+          ],
+          [
+            null,
+            "25082000005",
+            "CPOID-",
+            "IB69100101",
+            "B",
+            2.0,
+            16450.0,
+            2.0,
+            "5000.00",
+            "0.00",
+            ""
+          ],
+          [
+            null,
+            "25082000005",
+            "CPOID-",
+            "IP69100101",
+            "S",
+            2.0,
+            16450.0,
+            2.0,
+            "5000.00",
+            "0.00",
+            ""
+          ],
+          [
+            null,
+            "25082000006",
+            "CPOID-",
+            "IB00500201",
+            "B",
+            2.0,
+            16460.0,
+            2.0,
+            "5000.00",
+            "0.00",
+            ""
+          ],
+          [
+            null,
+            "25082000006",
+            "CPOID-",
+            "IB00500101",
+            "S",
+            2.0,
+            16460.0,
+            2.0,
+            "5000.00",
+            "0.00",
+            ""
+          ],
+          [
+            null,
+            "25082000007",
+            "CPOID-",
+            "IB00500201",
+            "B",
+            2.0,
+            16460.0,
+            2.0,
+            "5000.00",
+            "0.00",
+            ""
+          ],
+          [
+            null,
+            "25082000007",
+            "CPOID-",
+            "IB00500101",
+            "S",
+            2.0,
+            16460.0,
+            2.0,
+            "5000.00",
+            "0.00",
+            ""
+          ],
+          [
+            null,
+            "25082000008",
+            "CPOID-",
+            "IB00500101",
+            "B",
+            2.0,
+            16300.0,
+            2.0,
+            "5000.00",
+            "0.00",
+            ""
+          ],
+          [
+            null,
+            "25082000008",
+            "CPOID-",
+            "IB00500201",
+            "S",
+            2.0,
+            16300.0,
+            2.0,
+            "5000.00",
+            "0.00",
+            ""
+          ],
+          [
+            null,
+            "25082000009",
+            "CPOID-",
+            "IB00500101",
+            "B",
+            2.0,
+            16300.0,
+            2.0,
+            "5000.00",
+            "0.00",
+            ""
+          ],
+          [
+            null,
+            "25082000009",
+            "CPOID-",
+            "IB00500201",
+            "S",
+            2.0,
+            16300.0,
+            2.0,
+            "5000.00",
+            "0.00",
+            ""
+          ],
+          [
+            null,
+            "25082000010",
+            "CPOID-",
+            "IB11100101",
+            "B",
+            2.0,
+            16500.0,
+            2.0,
+            "5000.00",
+            "0.00",
+            ""
+          ],
+          [
+            null,
+            "25082000010",
+            "CPOID-",
+            "IB11100201",
+            "S",
+            2.0,
+            16500.0,
+            2.0,
+            "5000.00",
+            "0.00",
+            ""
+          ],
+          [
+            null,
+            "25082000011",
+            "CPOID-",
+            "IB11100101",
+            "B",
+            2.0,
+            16500.0,
+            2.0,
+            "5000.00",
+            "0.00",
+            ""
+          ],
+          [
+            null,
+            "25082000011",
+            "CPOID-",
+            "IB11100201",
+            "S",
+            2.0,
+            16500.0,
+            2.0,
+            "5000.00",
+            "0.00",
+            ""
+          ],
+          [
+            null,
+            "25082800001",
+            "CPOID-",
+            "IB11100201",
+            "B",
+            2.0,
+            16500.0,
+            2.0,
+            "5000.00",
+            "0.00",
+            ""
+          ],
+          [
+            null,
+            "25082800001",
+            "CPOID-",
+            "IB11100101",
+            "S",
+            2.0,
+            16500.0,
+            2.0,
+            "5000.00",
+            "0.00",
+            ""
+          ],
+          [
+            null,
+            "25082800002",
+            "CPOID-",
+            "IB11200101",
+            "B",
+            2.0,
+            16500.0,
+            2.0,
+            "5000.00",
+            "0.00",
+            ""
+          ],
+          [
+            null,
+            "25082800002",
+            "CPOID-",
+            "IB11100101",
+            "S",
+            2.0,
+            16500.0,
+            2.0,
+            "5000.00",
+            "0.00",
+            ""
+          ],
+          [
+            null,
+            "25082900001",
+            "CPOID-",
+            "IB11100101",
+            "B",
+            2.0,
+            16500.0,
+            2.0,
+            "5000.00",
+            "0.00",
+            ""
+          ],
+          [
+            null,
+            "25082900001",
+            "CPOID-",
+            "IB11200101",
+            "S",
+            2.0,
+            16500.0,
+            2.0,
+            "5000.00",
+            "0.00",
+            ""
+          ],
+          [
+            null,
+            "25082900002",
+            "CPOID-",
+            "IB11100201",
+            "B",
+            2.0,
+            16490.0,
+            2.0,
+            "5000.00",
+            "0.00",
+            ""
+          ],
+          [
+            null,
+            "25082900002",
+            "CPOID-",
+            "IB11100101",
+            "S",
+            2.0,
+            16490.0,
+            2.0,
+            "5000.00",
+            "0.00",
+            ""
+          ]
+        ],
+        "row_count": 25,
+        "column_count": 11
+      },
+      "confidence": 0.9,
+      "metadata": {
+        "page_number": 1,
+        "table_index": 1,
+        "extraction_method": "native_table",
+        "row_count": 25,
+        "column_count": 11,
+        "column_names": [
+          "Datetrade",
+          "Trade Id",
+          "Contract",
+          "Acc",
+          "Buy Sell",
+          "Trade Vol",
+          "Price",
+          "Close Vol",
+          "Close Settle",
+          "Fee Trade",
+          "Overnight"
+        ],
+        "rows_reconstructed": 0,
+        "wrapped_headers": false
+      }
+    }
+  ],
+  "statistics": {
+    "total_pages": 2,
+    "total_text_chars": 4350,
+    "total_tables_found": 26,
+    "total_tables_processed": 1,
+    "tables_from_native": 1,
+    "tables_from_text_mining": 1,
+    "items_extracted": 2
+  }
+}

@@ -1,0 +1,15 @@
+DEBUG: Total pages: 11
+DEBUG: Total text lines: 572
+DEBUG: No header pattern found in text, trying table extraction
+DEBUG: Header extracted from table: 11 columns
+DEBUG: Cleaned headers: ['DateTrade', 'Trade ID', 'Contract', 'Acc', 'Buy Sell', 'Trade Vol', 'Price', 'Close Vol', 'Close Settle', 'Fee Trade', 'Overnight']
+DEBUG: Looking for rows with 11 columns
+DEBUG: Parsed 50 rows so far
+DEBUG: Parsed 100 rows so far
+DEBUG: Parsed 150 rows so far
+DEBUG: Parsed 200 rows so far
+DEBUG: Parsed 250 rows so far
+DEBUG: Saved combined table with 274 rows
+DEBUG: Header found: ['DateTrade', 'Trade ID', 'Contract', 'Acc', 'Buy Sell', 'Trade Vol', 'Price', 'Close Vol', 'Close Settle', 'Fee Trade', 'Overnight']
+DEBUG: Total rows parsed: 274
+DEBUG: Total items extracted: 2
