@@ -1,4 +1,4 @@
-python ekstraksi pdf berada di folder python. sisanya merupakan web go untuk memuat input pdf dan mengeluarkan output berupa hasil ekstraksi teks dan tabel beserta nilainya
+python ekstraksi pdf berada di folder python. sisanya merupakan web go untuk memuat input pdf dan mengeluarkan output berupa hasil ekstraksi teks dan tabel beserta nilainya.
 input yang diharapkan berupa pdf berisikan table dengan boundaries yang jelas seperti tabel berikut
 
 <img width="1066" height="490" alt="image" src="https://github.com/user-attachments/assets/194f581f-a1f0-437e-b3d0-e9935891bcda" />
